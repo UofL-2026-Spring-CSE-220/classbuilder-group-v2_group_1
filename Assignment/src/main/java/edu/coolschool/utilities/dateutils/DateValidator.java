@@ -23,7 +23,10 @@ public class DateValidator {
             case 10: // October
             case 12: // December
                 return 31;
-            //alot missing here
+            case 4: case 6: case 9: case 11:
+                return 30;
+            case 2:
+                return isLeapYear(year) ? 29 : 28;
             default:
                 throw new IllegalArgumentException("Invalid month number: " + month);
         }
@@ -47,7 +50,7 @@ public class DateValidator {
         // Example usage
         System.out.println(isValidDate(29, MonthsEnum.FEBRUARY, 2020)); // true
         System.out.println(isValidDate(29, MonthsEnum.FEBRUARY, 2021)); // false
-        System.out.println(isValidDate(31, 4, 2021)); // false
+/**/        System.out.println(isValidDate(31, 4, 2021)); // false
         System.out.println(isValidDate(31, 12, 2021)); // true
     }
 
