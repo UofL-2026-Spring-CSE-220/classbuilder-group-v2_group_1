@@ -38,6 +38,26 @@ public class DateRecordUnitTest {
                 .build();
         assertEquals(31, endOfYear.dayInteger());
         assertEquals(12, endOfYear.monthInteger());
+
+    }
+    @Test
+    @DisplayName("Verify leap year February 29 is accepted and non-leap year February 29 is rejected")
+    public void testFebruaryLeapYearBoundary() {
+        DateRecord leapDay = new DateRecord.Builder()
+                .setYear(2024)
+                .setMonth(MonthsEnum.FEBRUARY)
+                .setDay(29)
+                .build();
+        assertEquals(29, leapDay.dayInteger());
+        assertEquals(2, leapDay.monthInteger());
+
+        assertThrows(IllegalArgumentException.class, () ->
+                new DateRecord.Builder()
+                        .setYear(2023)
+                        .setMonth(MonthsEnum.FEBRUARY)
+                        .setDay(29)
+                        .build()
+        );
     }
 
 }
